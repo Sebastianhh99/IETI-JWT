@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 @RestController
 @RequestMapping( "/v1/user" )
 public class UserController
@@ -53,6 +55,7 @@ public class UserController
         return ResponseEntity.ok( userService.update( userDto, id ) );
     }
 
+    @RolesAllowed("ADMIN")
     @DeleteMapping( "/{id}" )
     public ResponseEntity<Boolean> delete( @PathVariable String id )
     {
